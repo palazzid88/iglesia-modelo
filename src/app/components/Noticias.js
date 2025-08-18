@@ -1,46 +1,35 @@
-export default function Noticias() {
-  // Noticias de ejemplo
-  const noticias = [
-    {
-      titulo: 'Visita de hermanos de Corrientes',
-      descripcion: 'El día jueves 14 recibimos la visita de los hermanos de Corrientes. Fue un momento de alegría y confraternidad.',
-      imagen: '/images/visita_corrientes.jpg', // Poné una imagen en /public/images/
-    },
-    {
-      titulo: 'Concierto especial de alabanza',
-      descripcion: 'Este domingo tendremos un concierto especial de alabanza en el salón principal a las 18:00 hs.',
-      imagen: '/images/concierto.jpg',
-    },
-    {
-      titulo: 'Taller de jóvenes',
-      descripcion: 'Se realizó un taller para jóvenes sobre liderazgo y valores cristianos, con gran participación.',
-      imagen: '/images/taller_jovenes.jpg',
-    },
-  ];
+import { client, urlFor } from "@/lib/sanity";
+
+export default async function Noticias() {
+  // Traemos las noticias habilitadas de Sanity
+  const noticias = await client.fetch(`
+    *[_type == "noticia" && enabled == true] | order(_createdAt desc){
+      _id,
+      titulo,
+      descripcion,
+      imagen
+    }
+  `);
 
   return (
-    <section style={{ padding: '80px 20px', background: '#fff', textAlign: 'center' }}>
-      <h2 style={{ fontSize: '2rem', marginBottom: '40px' }}>Noticias</h2>
+    <section className="py-20 px-4 bg-white text-center">
+      <h2 className="text-3xl font-bold mb-10">Noticias</h2>
 
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
-        {noticias.map((noticia, index) => (
+      <div className="flex justify-center gap-6 flex-wrap">
+        {noticias.map(noticia => (
           <div
-            key={index}
-            style={{
-              background: '#f9f9f9',
-              padding: '20px',
-              width: '300px',
-              boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
-              borderRadius: '8px',
-            }}
+            key={noticia._id}
+            className="bg-gray-50 p-5 w-72 shadow-lg rounded-lg"
           >
-            <img
-              src={noticia.imagen}
-              alt={noticia.titulo}
-              style={{ width: '100%', height: '180px', objectFit: 'cover', borderRadius: '5px', marginBottom: '15px' }}
-            />
-            <h3 style={{ marginBottom: '10px' }}>{noticia.titulo}</h3>
-            <p>{noticia.descripcion}</p>
+            {noticia.imagen && (
+              <img
+                src={urlFor(noticia.imagen).width(300).url()}
+                alt={noticia.titulo}
+                className="w-full h-44 object-cover rounded-md mb-4"
+              />
+            )}
+            <h3 className="text-xl font-semibold mb-2">{noticia.titulo}</h3>
+            <p className="text-gray-700">{noticia.descripcion}</p>
           </div>
         ))}
       </div>

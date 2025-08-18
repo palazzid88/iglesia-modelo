@@ -1,29 +1,39 @@
-export default function Eventos() {
-  // Eventos de ejemplo
-  const eventos = [
-    { fecha: 'Jueves 14', titulo: 'Reunión de Jóvenes', lugar: 'Salón principal' },
-    { fecha: 'Domingo 17', titulo: 'Servicio Especial', lugar: 'Iglesia central' },
-    { fecha: 'Miércoles 20', titulo: 'Taller de Liderazgo', lugar: 'Sala de conferencias' },
-  ];
+// src/app/components/Eventos.jsx
+import { client } from "@/lib/sanity";
+
+export default async function Eventos() {
+  const eventos = await client.fetch(`
+    *[_type == "evento"] {
+      _id,
+      tipo,
+      dia,
+      horaInicio,
+      horaFin,
+      suspendido
+    }
+  `);
 
   return (
-    <section style={{ padding: '80px 20px', background: '#f9f9f9', textAlign: 'center' }}>
-      <h2 style={{ fontSize: '2rem', marginBottom: '40px' }}>Eventos Próximos</h2>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
-        {eventos.map((evento, index) => (
+    <section className="py-20 bg-gray-100 text-center">
+      <h2 className="text-3xl font-bold mb-12">Agenda Semanal</h2>
+      <div className="flex flex-wrap justify-center gap-8">
+        {eventos.map((evento) => (
           <div
-            key={index}
-            style={{
-              background: '#fff',
-              padding: '20px',
-              width: '250px',
-              boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
-              borderRadius: '8px',
-            }}
+            key={evento._id}
+            className="relative bg-white p-6 w-72 shadow-md rounded-lg flex flex-col items-center"
           >
-            <h3 style={{ marginBottom: '10px' }}>{evento.titulo}</h3>
-            <p><strong>Fecha:</strong> {evento.fecha}</p>
-            <p><strong>Lugar:</strong> {evento.lugar}</p>
+            {evento.suspendido && (
+              <span className="absolute top-2 left-2 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                SUSPENDIDO
+              </span>
+            )}
+            <h3 className="text-xl font-semibold mb-2">{evento.tipo}</h3>
+            <p className="text-gray-600 mb-1">
+              <strong>Día:</strong> {evento.dia}
+            </p>
+            <p className="text-gray-600">
+              <strong>Horario:</strong> {evento.horaInicio} - {evento.horaFin}
+            </p>
           </div>
         ))}
       </div>

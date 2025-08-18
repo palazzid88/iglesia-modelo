@@ -9,6 +9,9 @@ import Noticias from './components/Noticias';
 import Obreros from './components/Obreros';
 import Eventos from './components/Eventos';
 import Galeria from './components/Galeria';
+import FormPedidos from './components/FormPedidos';
+import SeccionPedidos from './components/SeccionPedidos';
+import PedidosSection from './components/PedidosSection';
 
 export default function Home() {
   return (
@@ -18,7 +21,9 @@ export default function Home() {
       <Versiculo />
       < Eventos />
       <Noticias />
-      <PedidosOracion />
+      {/* <PedidosOracion /> */}
+      {/* < FormPedidos /> */}
+      < PedidosSection />
       < Obreros />
       <QuienesSomos />
       <Ministerios />

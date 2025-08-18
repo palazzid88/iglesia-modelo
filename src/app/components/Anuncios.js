@@ -1,17 +1,56 @@
-export default function Anuncios() {
+// src/app/components/Anuncios.jsx
+import { client, urlFor } from "@/lib/sanity";
+
+export default async function Anuncios() {
+  const anuncios = await client.fetch(
+    `*[_type == "anuncio" && enabled == true] | order(priority desc, startDate desc) {
+      _id,
+      title,
+      subtitle,
+      description,
+      image,
+      link,
+      startDate,
+      endDate,
+      priority
+    }`
+  );
+
   return (
-    <section style={{ padding: '80px 20px', background: '#f9f9f9', textAlign: 'center' }}>
-      <h2 style={{ fontSize: '2rem', marginBottom: '40px' }}>Anuncios Importantes</h2>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
-        <div style={{ background: '#fff', padding: '20px', width: '300px', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' }}>
-          <h3>Reunión de Jóvenes</h3>
-          <p>Este sábado a las 18:00 en el salón principal.</p>
-        </div>
-        <div style={{ background: '#fff', padding: '20px', width: '300px', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' }}>
-          <h3>Servicio Especial</h3>
-          <p>Domingo a las 10:00, con predicación especial sobre esperanza.</p>
-        </div>
+<section className="py-16 px-4 bg-gray-50 text-center">
+  <h2 className="text-3xl font-bold mb-10">Anuncios Importantes</h2>
+  <div className="flex flex-wrap justify-center gap-8">
+    {anuncios.map(anuncio => (
+      <div
+        key={anuncio._id}
+        className="bg-white p-6 w-80 shadow-md rounded-xl text-left"
+      >
+        <h3 className="text-xl font-semibold mb-2">{anuncio.title}</h3>
+        {anuncio.image && (
+          <img
+          src={urlFor(anuncio.image).width(300).url()}
+          alt={anuncio.title}
+          className="w-full rounded-md mb-4"
+          />
+        )}
+        {anuncio.subtitle && (
+          <h4 className="text-gray-600 mb-2">{anuncio.subtitle}</h4>
+        )}
+        <p className="text-gray-700 mb-4">{anuncio.description}</p>
+        {anuncio.link && (
+          <a
+            href={anuncio.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+          >
+            Consultar
+          </a>
+        )}
       </div>
-    </section>
+    ))}
+  </div>
+</section>
+
   );
 }
