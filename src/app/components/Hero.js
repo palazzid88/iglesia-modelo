@@ -15,9 +15,10 @@ export default function Hero() {
         <p className="text-lg md:text-2xl text-white mb-6 drop-shadow-md">
           Un lugar para crecer en comunidad y fe
         </p>
-        <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 px-6 rounded-full transition-all duration-300 shadow-lg">
+        {/* <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 px-6 rounded-full transition-all duration-300 shadow-lg">
           Ver eventos
-        </button>
+        </button> */}
+        
       </div>
     </section>
   );

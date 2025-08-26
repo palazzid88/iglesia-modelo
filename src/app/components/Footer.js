@@ -7,16 +7,19 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         
         {/* Logo de la agencia */}
-        <div className="flex items-center gap-2">
-          <span className="font-bold text-sm">desarrollado por</span>
-          <Image 
-            src="/images/impulsar.webp" 
-            alt="Impulsar Logo" 
-            width={150} 
-            height={150} 
-            className="rounded"
-          />
-        </div>
+       <div className="flex items-center gap-2">
+  <span className="font-bold text-sm">desarrollado por</span>
+  <a href="https://impulsardigital.com.ar" target="_blank" rel="noopener noreferrer">
+    <Image 
+      src="/images/impulsar.webp" 
+      alt="Impulsar Logo" 
+      width={150} 
+      height={150} 
+      className="rounded cursor-pointer"
+    />
+  </a>
+</div>
+
 
         {/* Contacto */}
         <div className="text-center md:text-left">

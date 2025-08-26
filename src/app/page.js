@@ -16,19 +16,49 @@ import PedidosSection from './components/PedidosSection';
 export default function Home() {
   return (
     <main>
-      <Hero />
-      <Anuncios />
-      <Versiculo />
-      < Eventos />
-      <Noticias />
-      {/* <PedidosOracion /> */}
-      {/* < FormPedidos /> */}
-      < PedidosSection />
-      < Obreros />
-      <QuienesSomos />
-      <Ministerios />
-      < Galeria />
-      <Ubicacion />
+      <section id="hero">
+        <Hero />
+      </section>
+
+      <section id="anuncios">
+        <Anuncios />
+      </section>
+
+      <section id="versiculo">
+        <Versiculo />
+      </section>
+
+      <section id="eventos">
+        <Eventos />
+      </section>
+
+      <section id="noticias">
+        <Noticias />
+      </section>
+
+      <section id="pedidos">
+        <PedidosSection />
+      </section>
+
+      <section id="obreross">
+        <Obreros />
+      </section>
+
+      <section id="quienes-somos">
+        <QuienesSomos />
+      </section>
+
+      <section id="ministerios">
+        <Ministerios />
+      </section>
+
+      <section id="galeria">
+        <Galeria />
+      </section>
+
+      <section id="ubicacion">
+        <Ubicacion />
+      </section>
     </main>
   );
 }
