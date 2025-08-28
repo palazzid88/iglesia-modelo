@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { client, urlFor } from "@/lib/sanity";
 
 export default async function Noticias() {
@@ -22,11 +23,14 @@ export default async function Noticias() {
             className="bg-gray-50 p-5 w-72 shadow-lg rounded-lg"
           >
             {noticia.imagen && (
-              <img
+            <Image
                 src={urlFor(noticia.imagen).width(300).url()}
                 alt={noticia.titulo}
+                width={300}
+                height={176} // más o menos proporcional a h-44 (11rem)
                 className="w-full h-44 object-cover rounded-md mb-4"
               />
+
             )}
             <h3 className="text-xl font-semibold mb-2">{noticia.titulo}</h3>
             <p className="text-gray-700">{noticia.descripcion}</p>
