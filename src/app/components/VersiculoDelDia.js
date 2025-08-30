@@ -25,7 +25,7 @@ export default async function VersiculoDelDia() {
 
   return (
     <div className="p-6 bg-white shadow-lg rounded-lg text-center max-w-xl mx-auto">
-      <p className="text-lg italic mb-2">"{versiculo.texto}"</p>
+      <p className="text-lg italic mb-2">"{versiculo.texto}</p>
       <p className="font-semibold">{versiculo.referencia}</p>
     </div>
   );
