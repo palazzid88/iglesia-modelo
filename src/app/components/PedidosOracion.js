@@ -13,7 +13,7 @@ export default async function PedidosDeOracion() {
     }
   `);
   
-  console.log("pedidos", pedidos);
+  // console.log("pedidos", pedidos);
   
 
   return <SeccionPedidos pedidos={pedidos} />;

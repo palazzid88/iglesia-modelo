@@ -12,6 +12,7 @@ import Galeria from './components/Galeria';
 import FormPedidos from './components/FormPedidos';
 import SeccionPedidos from './components/SeccionPedidos';
 import PedidosSection from './components/PedidosSection';
+import VersiculoDelDia from './components/VersiculoDelDia';
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
       </section>
 
       <section id="versiculo">
-        <Versiculo />
+        <VersiculoDelDia />
       </section>
 
       <section id="eventos">

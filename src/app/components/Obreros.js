@@ -14,7 +14,7 @@ async function getObreros() {
 
 export default async function Obreros() {
   const obreros = await getObreros();
-  console.log("obreros", obreros);
+  // console.log("obreros", obreros);
 
   return (
     <section className="py-16 px-4 bg-gray-50">
