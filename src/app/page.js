@@ -15,6 +15,7 @@ import FormPedidos from './components/FormPedidos';
 import SeccionPedidos from './components/SeccionPedidos';
 import PedidosSection from './components/PedidosSection';
 import VersiculoDelDia from './components/VersiculoDelDia';
+import Anexos from './components/Anexos';
 
 export default function Home() {
   return (
@@ -57,6 +58,10 @@ export default function Home() {
 
       <section id="galeria">
         <Galeria />
+      </section>
+      
+      <section id="anexos">
+        <Anexos />
       </section>
 
       <section id="ubicacion">

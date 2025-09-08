@@ -15,3 +15,15 @@ export async function getVerseOfTheDay() {
 
   return await client.fetch(query, params)
 }
+
+
+export async function getAnexos() {
+  const query = `*[_type == "anexo"]{
+    nombre,
+    direccion,
+    ciudad,
+    telefono,
+    redes
+  }`;
+  return await client.fetch(query);
+}
