@@ -1,7 +1,7 @@
 import { client, urlFor } from "@/lib/sanity";
 
 async function getGaleria() {
-  const query = `*[_type == "galeria"][0]{
+  const query = `*[_type == "galeria"]{
     titulo,
     imagenes
   }`;
@@ -11,13 +11,16 @@ async function getGaleria() {
 export default async function Galeria() {
   const data = await getGaleria();
 
+  console.log("data", data);
+  
+
   if (!data) {
     return <p className="text-center text-gray-500">No hay imágenes cargadas.</p>;
   }
 
   return (
     <section className="py-16 px-4 bg-white text-center">
-      <h2 className="text-3xl font-bold mb-8">{data.titulo || "Galería de Fotos"}</h2>
+      {/* <h2 className="text-3xl font-bold mb-8">{data.titulo || "Galería de Fotos"}</h2> */}
 
       <div className="flex overflow-x-auto gap-4 px-2 pb-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
         {data.imagenes?.map((img, index) => (
