@@ -1,22 +1,31 @@
-export default function Galeria() {
-  // Fotos de ejemplo (colocá las imágenes en /public/images/)
-  const fotos = [
-    '/images/foto1.jpg',
-    '/images/foto2.jpg',
-    '/images/foto3.jpg',
-    '/images/foto4.jpg',
-  ];
+import { client, urlFor } from "@/lib/sanity";
+
+async function getGaleria() {
+  const query = `*[_type == "galeria"][0]{
+    titulo,
+    imagenes
+  }`;
+  return await client.fetch(query);
+}
+
+export default async function Galeria() {
+  const data = await getGaleria();
+
+  if (!data) {
+    return <p className="text-center text-gray-500">No hay imágenes cargadas.</p>;
+  }
 
   return (
-    <section style={{ padding: '80px 20px', background: '#fff', textAlign: 'center' }}>
-      <h2 style={{ fontSize: '2rem', marginBottom: '40px' }}>Galería de Fotos</h2>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
-        {fotos.map((foto, index) => (
+    <section className="py-16 px-4 bg-white text-center">
+      <h2 className="text-3xl font-bold mb-8">{data.titulo || "Galería de Fotos"}</h2>
+
+      <div className="flex overflow-x-auto gap-4 px-2 pb-4 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+        {data.imagenes?.map((img, index) => (
           <img
             key={index}
-            src={foto}
+            src={urlFor(img).width(400).height(300).url()}
             alt={`Foto ${index + 1}`}
-            style={{ width: '250px', height: '180px', objectFit: 'cover', borderRadius: '8px' }}
+            className="w-80 h-56 object-cover rounded-lg flex-shrink-0 shadow-md"
           />
         ))}
       </div>
