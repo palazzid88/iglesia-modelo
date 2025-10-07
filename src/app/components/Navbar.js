@@ -19,7 +19,9 @@ export default function Navbar() {
     <nav className="bg-gray-900 text-white px-6 py-4 shadow-md fixed w-full z-50">
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         {/* Logo */}
-        <div className="text-2xl font-bold">IEAD 248 POSADAS CH.32-33</div>
+        <div className="text-lg sm:text-xl md:text-2xl font-bold whitespace-nowrap">
+          IEAD 248 POSADAS CH.32-33
+        </div>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8">
