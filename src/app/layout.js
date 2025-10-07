@@ -3,8 +3,10 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 export const metadata = {
-  title: 'Iglesia Ejemplo',
-  description: 'Página web de ejemplo para iglesia',
+title: 'Iglesia iEAD',
+  description:
+    'Sitio web oficial de la Iglesia Evangélica Apostólica de Dios (iEAD) en Posadas - Misiones, Argentina.'
+
 };
 
 export default function RootLayout({ children }) {
